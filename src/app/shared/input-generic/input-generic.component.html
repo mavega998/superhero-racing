@@ -1,0 +1,23 @@
+<mat-form-field [style.width.%]="width">
+    <mat-progress-bar mode="indeterminate" *ngIf="loading" class="margin-bottom">
+    </mat-progress-bar>
+    <input [readonly]="isDisabled" type="text" matInput [matAutocomplete]="autocompleteHeroes"
+        [formControl]="heroeControl" (click)="onTouched()" />
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-autocomplete #autocompleteHeroes="matAutocomplete" (optionSelected)="onHeroesChange($event)"
+        [displayWith]="displayFn">
+        <mat-option *ngFor="let heroeItem of heroes | async" [value]="heroeItem">
+            {{heroeItem.name}}
+        </mat-option>
+    </mat-autocomplete>
+    <mat-placeholder class="placeholder">Heroe</mat-placeholder>
+    <mat-error *ngIf="heroeControl.errors">
+        <mat-error *ngIf="isNull" class="required alert-error text-erro">
+            <span>No se encontraron resultados</span>
+        </mat-error>
+        <mat-error *ngIf="heroeControl.errors.valid" class="required alert-error text-erro">
+            <span>Seleccione un Heroe</span>
+        </mat-error>
+    </mat-error>
+</mat-form-field>
+<ng-content></ng-content>

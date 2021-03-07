@@ -1,0 +1,16 @@
+<app-input-generic [width]="100" (selectHeroe)="heroeSelected($event)"></app-input-generic>
+<div class="card rounded" style="width: 18rem;" *ngIf="heroeElegido" [ngClass]="{'shadow-cu': ganoHeroe}">
+    <!-- <div class="card-header">
+        {{heroeElegido.name}}
+    </div> -->
+    <fieldset>
+        <legend class="badge bg-info ms-2">
+            <small class="m-0 p-0 fs-4">{{heroeElegido.name}}</small>
+        </legend>
+        <img [src]="heroeElegido.image.url" class="card-img-top p-3 rounded" [alt]="heroeElegido.name">
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <ul [innerHTML]="showPowerStats()"></ul>
+        </div>
+    </fieldset>
+</div>
